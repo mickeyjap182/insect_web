@@ -5,7 +5,8 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: postgresql # heroku
+  # adapter: postgresql # heroku
+  adapter: sqlite3 # デフォルト
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
