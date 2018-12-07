@@ -10,6 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2018_12_05_173856) do
+
+  create_table "sensors", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.integer "sensor_type"
+    t.string "explanation"
+    t.integer "valid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_sensors_on_name"
+    t.index ["user_id"], name: "index_sensors_on_user_id"
+  end
+
+  create_table "temp_humidities", force: :cascade do |t|
+    t.integer "facility_id"
+    t.float "temp"
+    t.float "humidity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_temp_humidities_on_facility_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "nickname"
+    t.string "email"
+    t.date "birthday"
+    t.text "password"
+    t.integer "user_status"
+    t.integer "user_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email"
+  end
 
 end

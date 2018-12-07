@@ -13,4 +13,21 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
+import React from 'react';
+var HelloMessage = React.createClass({
+  render: function() {
+    return (
+      <h1>Hello {this.props.name}!</h1>
+    )
+  }
+});
+
+const Hello_1 = (props) => {
+    return <div className="Hello">
+        Hello {props.name}
+    </div>;
+}
