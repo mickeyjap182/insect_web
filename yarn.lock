@@ -5320,12 +5320,22 @@ react-dom@^16.6.3:
     prop-types "^15.6.2"
     scheduler "^0.11.2"
 
-react-on-rails@^11.2.1:
+react-on-rails@11.2.1:
   version "11.2.1"
   resolved "https://registry.yarnpkg.com/react-on-rails/-/react-on-rails-11.2.1.tgz#b25637bb3d5c6cebd89f4697eb021ede332a3000"
   integrity sha512-GY8if/w3JkrQNun1xB8O2GG0J8BCB66xranGk7o4TFQyfyeHIEhXbgDEfRM7Xmme4SHFjz1SUY+Oa73WgUcT9g==
   dependencies:
     "@babel/runtime-corejs2" "^7.0.0"
+
+react@^16.6.3:
+  version "16.6.3"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"
+  integrity sha512-zCvmH2vbEolgKxtqXL2wmGCUxUyNheYn/C+PD1YAjfxHC54+MhdruyhO7QieQrYsYeTxrn93PM2y0jRH1zEExw==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.11.2"
 
 read-cache@^1.0.0:
   version "1.0.0"
