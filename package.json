@@ -2,7 +2,9 @@
   "name": "insectors",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.5"
+    "@rails/webpacker": "3.5",
+    "react-dom": "^16.6.3",
+    "react-on-rails": "^11.2.1"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
