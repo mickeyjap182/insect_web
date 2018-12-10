@@ -37,6 +37,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "react_on_rails", "11.0.0"
 gem "webpacker", "~> 3"
+gem 'rails-ujs', '~> 5.1.0.beta1'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

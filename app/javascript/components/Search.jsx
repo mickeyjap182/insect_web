@@ -4,7 +4,7 @@ export default class Search extends React.Component {
   render() {
     return (
       <div className="ui raised segment no padding">
-        <form method="GET" action="search">
+        <form method="GET" action="search"><div></div>
           <div className="ui fluid icon transparent large input">
             <input name="query" type="text" placeholder="Search apps..." autoComplete="off" />
             <button type="submit">
