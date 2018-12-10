@@ -1,4 +1,8 @@
-<h1>Pages#rearing#TOP</h1>
-<p>Find me in app/views/static_pages/multiplic.html.erb</p>
-<%= react_component 'Records', { data: @records } %>
-<%= react_component 'Hello_1', {name:'john'} %>
+      <div class="panel panel-info">
+          <div class="panel-heading panel-info">温湿度一覧</div>
+          <div class="panel-body">昆虫の生育環境をモニタします。</div>
+      </div>
+      <div id="app">
+        <%= react_component('TempHumidityList', prerender: false) %>
+      </div>
+    </div>
