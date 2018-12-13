@@ -24,40 +24,48 @@ function ChangeLink(props) {
   );
 }
 export default class Menu extends React.Component {
-  constructor(props) {
+  constructor(props, _railsContext) {
     super(props)
+    console.log(props)
+    console.debug("==in Menu==");
 
     // 初期設定
     this.state = {
       process: "temphumdity"
     };
   }
-  show01(target) {
+  showTempHumidity(target) {
     this.setState({ process: "temphumdity"});
     // .bg-info
 
     console.log(target);
     console.log(this.state.process);
+    document.getElementById('panel_heading').innerHTML = "温湿度状況";
+    document.getElementById('panel_body').innerHTML = "昆虫の生育環境をモニタします。";
     ReactDOM.render(
-      <TempHumidityList />,           // 出力するコンポーネントを指定
+      <TempHumidityList tempHumidityList={this.props.tempHumidityList} />,           // 出力するコンポーネントを指定
       document.getElementById('app')    // 出力先のelementを指定(jQueryを併用できる)
     );
   }
 
-  show02(target) {
+  showFacility(target) {
     this.setState({ process: "facilities"});
     console.log(this.state.process);
+    document.getElementById('panel_heading').innerHTML = "設備";
+    document.getElementById('panel_body').innerHTML = "昆虫の生育設備を管理します。";
     ReactDOM.render(
-      <Facilities />,           // 出力するコンポーネントを指定
+      <Facilities  facilities={this.props.tempHumidityList}/>,           // 出力するコンポーネントを指定
       document.getElementById('app')    // 出力先のelementを指定(jQueryを併用できる)
     );
   }
 
-  show03(target) {
+  showUser(target) {
     this.setState({ process: "users"});
     console.log(this.state.process);
+    document.getElementById('panel_heading').innerHTML = "昆活仲間";
+    document.getElementById('panel_body').innerHTML = "昆活仲間を招待します。";
     ReactDOM.render(
-      <Users />,           // 出力するコンポーネントを指定
+      <Users  users={this.props.tempHumidityList}/>,           // 出力するコンポーネントを指定
       document.getElementById('app')    // 出力先のelementを指定(jQueryを併用できる)
     );
   }
@@ -68,13 +76,13 @@ export default class Menu extends React.Component {
       <div className="nav">
         <ul className="list-group">
           <li className="list-group-item list-group-item-action view overlay ">
-            <ChangeLink cls="nav-link bg-primary text-white" link="#temphumdity" onClick={(e) => this.show01(e)}  value="温湿度状況"/>
+            <ChangeLink cls="nav-link bg-primary text-white clickable" link="#temphumdity" onClick={(e) => this.showTempHumidity(e)}  value="温湿度状況"/>
           </li>
           <li className="list-group-item list-group-item-action bg-info">
-            <ChangeLink cls="nav-link bg-primary text-white" link="#facilities" onClick={(e) => this.show02(e)}  value="センサー" />
+            <ChangeLink cls="nav-link bg-primary text-white clickable" link="#facilities" onClick={(e) => this.showFacility(e)}  value="センサー" />
           </li>
           <li className="list-group-item list-group-item-action">
-            <ChangeLink cls="nav-link bg-primary text-white" link="#users"  onClick={(e) => this.show03(e)} value="昆活メイト" />
+            <ChangeLink cls="nav-link bg-primary text-white clickable" link="#users"  onClick={(e) => this.showUser(e)} value="昆活メイト" />
           </li>
         </ul>
       </div>

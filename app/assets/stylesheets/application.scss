@@ -13,6 +13,7 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
- p {
-    color:blue;
+
+ .clickable {
+    cursor: pointer;
  }

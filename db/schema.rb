@@ -15,22 +15,24 @@ ActiveRecord::Schema.define(version: 2018_12_05_173856) do
   create_table "sensors", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
-    t.integer "sensor_type"
+    t.integer "cls"
     t.string "explanation"
-    t.integer "valid"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_sensors_on_name"
+    t.index ["cls"], name: "index_sensors_on_cls"
     t.index ["user_id"], name: "index_sensors_on_user_id"
   end
 
   create_table "temp_humidities", force: :cascade do |t|
-    t.integer "facility_id"
+    t.integer "sensor_id"
     t.float "temp"
     t.float "humidity"
+    t.datetime "inspected_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["facility_id"], name: "index_temp_humidities_on_facility_id"
+    t.index ["inspected_at"], name: "index_temp_humidities_on_inspected_at"
+    t.index ["sensor_id"], name: "index_temp_humidities_on_sensor_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,8 +40,8 @@ ActiveRecord::Schema.define(version: 2018_12_05_173856) do
     t.string "email"
     t.date "birthday"
     t.text "password"
-    t.integer "user_status"
-    t.integer "user_type"
+    t.integer "status"
+    t.integer "cls"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email"

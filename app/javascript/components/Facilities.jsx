@@ -2,21 +2,23 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class Facilities extends React.Component {
-  constructor(props) {
+  constructor(props, _railsContext) {
     super(props)
+    console.debug("==Facilities==")
+    console.log(this.props)
 
     // 初期設定
     this.state = {
-      facilities: [
-        {id:"2018/12/07 13:00", nickname:"21.4(C)", email:"72.5(%)"},
-        {id:"2018/12/07 12:30", nickname:"21.1(C)", email:"71.8(%)"}
-      ]
+      proccess: "Facilities"
     };
   }
 
   // 温湿度一覧描画
   render() {
-    var records = this.state.facilities;
+    var records = this.props.facilities;
+    console.debug("==Facilities render==")
+    console.log(records)
+    console.log(this.props.facilities)
     return (
       <table className="table table-striped table-bordered">
           <thead>

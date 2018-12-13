@@ -2,21 +2,23 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class TempHumidityList extends React.Component {
-  constructor(props) {
+  constructor(props, _railsContext) {
+    console.log(props)
     super(props)
-
     // 初期設定
+    console.log(props)
+    console.log(this.props)
     this.state = {
-      tempHumidityList: [
-        {id:"2018/12/07 13:00", nickname:"21.4(C)", email:"72.5(%)"},
-        {id:"2018/12/07 12:30", nickname:"21.1(C)", email:"71.8(%)"}
-      ]
+      proccess: "TempHumidityList_init"
     };
   }
 
   // 温湿度一覧描画
   render() {
-    var records = this.state.tempHumidityList;
+    var records = this.props.tempHumidityList;
+    console.debug("==tempHumidityList==")
+    console.log(records)
+    console.log(this.props)
     return (
       <table className="table table-striped table-bordered">
           <thead>

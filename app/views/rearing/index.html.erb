@@ -1,8 +1,11 @@
       <div class="panel panel-info">
-          <div class="panel-heading panel-info">温湿度一覧</div>
-          <div class="panel-body">昆虫の生育環境をモニタします。</div>
+          <div id="panel_heading" class="panel-heading panel-info">温湿度一覧</div>
+          <div id="panel_body" class="panel-body">昆虫の生育環境をモニタします。</div>
       </div>
       <div id="app">
-        <%= react_component('TempHumidityList', prerender: false) %>
+        <%= react_component('TempHumidityList', props: {tempHumidityList:@records}) %>
       </div>
     </div>
+    <% @records.each do |record| %>
+        <%= record.nickname %>
+    <% end %>
