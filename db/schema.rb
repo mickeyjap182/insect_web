@@ -15,12 +15,12 @@ ActiveRecord::Schema.define(version: 2018_12_05_173856) do
   create_table "sensors", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
-    t.integer "cls"
+    t.integer "type_cd"
     t.string "explanation"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cls"], name: "index_sensors_on_cls"
+    t.index ["type_cd"], name: "index_sensors_on_type_cd"
     t.index ["user_id"], name: "index_sensors_on_user_id"
   end
 
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 2018_12_05_173856) do
     t.date "birthday"
     t.text "password"
     t.integer "status"
-    t.integer "cls"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email"

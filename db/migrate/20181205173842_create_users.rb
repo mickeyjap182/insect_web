@@ -6,7 +6,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.date :birthday
       t.text :password
       t.integer :status
-      t.integer :cls
       t.datetime :created_at
       t.datetime :updated_at
 

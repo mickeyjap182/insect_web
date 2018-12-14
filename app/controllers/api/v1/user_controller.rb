@@ -1,7 +1,7 @@
 module Api
   module V1
     class UserController < ApplicationController
-      # サンプルのため、トークン認証無効化
+      # TODO:トークン認証・同一生成元ポリシー有効化
       skip_before_action :verify_authenticity_token
 
       def index
@@ -13,6 +13,7 @@ module Api
       end
 
       def create
+        puts post_params
         render json: { status: 'SUCCESS', message: 'create'}, status: :ok
       end
 

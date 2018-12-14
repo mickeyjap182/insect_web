@@ -3,7 +3,7 @@ class CreateSensors < ActiveRecord::Migration[5.2]
     create_table :sensors do |t|
       t.references :user, foreign_key: true
       t.string :name
-      t.integer :cls
+      t.integer :type_cd
       t.string :explanation
       t.integer :status
       t.datetime :created_at
@@ -11,6 +11,6 @@ class CreateSensors < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :sensors, :cls
+    add_index :sensors, :type_cd
   end
 end
