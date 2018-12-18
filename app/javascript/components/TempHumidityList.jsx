@@ -20,6 +20,7 @@ export default class TempHumidityList extends React.Component {
     console.log(records)
     console.log(this.props)
     return (
+      <div id="list_area">
       <table className="table table-striped table-bordered">
           <thead>
               <tr className="success">
@@ -31,13 +32,14 @@ export default class TempHumidityList extends React.Component {
           <tbody>
           {
             records.map((record) => {
-              return <tr>
-                <td> {record.id}</td><td>{record.nickname}</td><td>{record.email}</td>
+              return <tr key={record.id}>
+                <td> {record.inspected_at}</td><td>{record.temp}</td><td>{record.humidity}</td>
               </tr>
             })
           }
           </tbody>
       </table>
+    </div>
     );
   }
 }

@@ -8,9 +8,9 @@ class UserController < ApplicationController
   def modify
   end
 
-  def login
-  end
-
-  def logout
-  end
+  # def login
+  # end
+  #
+  # def logout
+  # end
 end

@@ -1,14 +1,14 @@
-require 'rails_helper'
 module Providers
   class Data
     class << self
       def new_user()
         return User.create(
           nickname: "Bob",
-          email: "Bob@rsp.ec",
+          email: "bob@rsp.ec",
           birthday: "2010/01/01",
           password: "xxxxx",
-          status: 10,
+          password_confirmation: "xxxxx",
+          status: 10
         )
 
       end

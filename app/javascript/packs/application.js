@@ -51,10 +51,10 @@ export default class Menu extends React.Component {
   showFacility(target) {
     this.setState({ process: "facilities"});
     console.log(this.state.process);
-    document.getElementById('panel_heading').innerHTML = "設備";
+    document.getElementById('panel_heading').innerHTML = "設備確認";
     document.getElementById('panel_body').innerHTML = "昆虫の生育設備を管理します。";
     ReactDOM.render(
-      <Facilities  facilities={this.props.tempHumidityList}/>,           // 出力するコンポーネントを指定
+      <Facilities  facilities={this.props.facilities}/>,           // 出力するコンポーネントを指定
       document.getElementById('app')    // 出力先のelementを指定(jQueryを併用できる)
     );
   }
@@ -62,10 +62,10 @@ export default class Menu extends React.Component {
   showUser(target) {
     this.setState({ process: "users"});
     console.log(this.state.process);
-    document.getElementById('panel_heading').innerHTML = "昆活仲間";
-    document.getElementById('panel_body').innerHTML = "昆活仲間を招待します。";
+    document.getElementById('panel_heading').innerHTML = "昆活メイト";
+    document.getElementById('panel_body').innerHTML = "昆活仲間の招待や確認をします。";
     ReactDOM.render(
-      <Users  users={this.props.tempHumidityList}/>,           // 出力するコンポーネントを指定
+      <Users  users={this.props.users}/>,           // 出力するコンポーネントを指定
       document.getElementById('app')    // 出力先のelementを指定(jQueryを併用できる)
     );
   }
@@ -79,7 +79,7 @@ export default class Menu extends React.Component {
             <ChangeLink cls="nav-link bg-primary text-white clickable" link="#temphumdity" onClick={(e) => this.showTempHumidity(e)}  value="温湿度状況"/>
           </li>
           <li className="list-group-item list-group-item-action bg-info">
-            <ChangeLink cls="nav-link bg-primary text-white clickable" link="#facilities" onClick={(e) => this.showFacility(e)}  value="センサー" />
+            <ChangeLink cls="nav-link bg-primary text-white clickable" link="#facilities" onClick={(e) => this.showFacility(e)}  value="設備一覧" />
           </li>
           <li className="list-group-item list-group-item-action">
             <ChangeLink cls="nav-link bg-primary text-white clickable" link="#users"  onClick={(e) => this.showUser(e)} value="昆活メイト" />

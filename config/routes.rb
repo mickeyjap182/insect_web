@@ -7,11 +7,12 @@ Rails.application.routes.draw do
   get 'static_pages/multiplic'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'application#top' # トップ
+  get  '/login', to: 'rearing#login' # トップ
   get  '/rearing', to: 'rearing#index' # トップ
   namespace 'api' do
     namespace 'v1' do
       resources :users
-      post 'user/index', to: 'user#index' # トップ
+      get  'user/index', to: 'user#index' # トップ
       post 'user/create', to: 'user#create' # トップ
       post 'user/update', to: 'user#update' # トップ
       post 'user/login', to: 'user#login' # トップ

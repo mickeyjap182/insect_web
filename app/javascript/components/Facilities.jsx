@@ -20,6 +20,7 @@ export default class Facilities extends React.Component {
     console.log(records)
     console.log(this.props.facilities)
     return (
+      <div id="list_area">
       <table className="table table-striped table-bordered">
           <thead>
             <tr className="success">
@@ -31,13 +32,14 @@ export default class Facilities extends React.Component {
           <tbody>
           {
             records.map((record) => {
-              return <tr>
-                <td> {record.id}</td><td>{record.nickname}</td><td>{record.email}</td>
+              return <tr  key={record.id}>
+                <td> {record.id}</td><td>{record.type_cd}</td><td>{record.name}</td>
               </tr>
             })
           }
           </tbody>
       </table>
+    </div>
     );
   }
 }
