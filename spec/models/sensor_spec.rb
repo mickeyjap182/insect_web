@@ -1,7 +1,6 @@
 require 'rails_helper'
 require 'providers/data'
 
-  # describe "Sensorモデル" do
 RSpec.describe Sensor, :type => :model do
   describe "モデル" do
     # user = Providers::Data.new_user()
