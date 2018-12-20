@@ -87,10 +87,64 @@ export default class User extends React.Component {
     );
 
   }
+
+  // ユーザ一覧描画
+  render() {
+    var users = this.props.users;
+    // console.debug("==render in User==");
+    console.log(this.props);
+    console.log(users)
+    return (
+      <div>
+        <div id="user_form">
+          <button type="button" id="new_user" type="button" className="btn btn-primary" onClick={(e) => this.newUser(e)}>新規登録</button>
+        </div>
+        <div id="list_area">
+      </div>
+      </div>
+    );
+  }
+}
+
+//　ユーザ登録フォーム
+class UserForm extends React.Component {
+  constructor(props, _railsContext) {
+    super(props)
+  }
+  render() {
+    // var users = this.props.users;
+    console.log("==UserForm==")
+    console.log(this.props)
+    return (
+      <div className="panel panel-success">
+        <form id="user_info" name="user_info" method="post">
+          <div className="panel-heading bg-success">昆活メイト登録</div>
+          <div className="panel-body">
+            <div id="user_info_message"></div>
+            <div className="container-fluid">
+              <div className="form-group row">
+                <label for="nickname">ニックネーム</label><input className="form-control" type="text" id="nickname" placeholder="半角英数字 例: Bob" name="nickname" />
+              </div>
+              <div className="form-group row">
+                <label for="password">パスワード</label><input className="form-control"  type="password" id="password" placeholder="半角英数字記号" name="password" />
+              </div>
+              <div className="form-group row">
+                <label for="password_confirm">パスワード(確認)</label><input className="form-control"  type="password" id="password_confirm" placeholder="パスワードと同じ内容" name="password_confirm" />
+              </div>
+            </div>
+          </div>
+          <div className="panel-footer">
+            <button type="button" id="commit_user" type="button" className="btn btn-success" onClick={(e) => this.createNewUser(e)}>この内容で登録</button>
+            <button type="button" id="cancel" type="button" className="btn btn-danger" onClick={(e) => this.newUser(e)}>取消(未実装)</button>
+          </div>
+        </form>
+      </div>
+    );
+  }
   // ユーザ新規作成データ送信
   createNewUser(target){
     this.setState({ process: "users_new"});
-    console.log(this.state.process);
+    // console.log(this.state.process);
     console.log(target);
     fetch('/api/v1/user/create', {
       method: 'POST',
@@ -123,74 +177,21 @@ export default class User extends React.Component {
         );
       }
       var elem = (
-          <div className="alert alert-info">登録しました。登録結果はタブ切り替えでご確認ください。</div>
+          <div className="alert alert-info">登録しました。登録結果はメニュー切り替えでご確認ください。</div>
       );
       ReactDOM.render(
         elem,
         document.getElementById('user_info_message')
       );
-      this.findUserList()
+      // this.findUserList()
     }).catch(function(error) {
       console.log(error)
       return error
     });
   }
 
-  // ユーザ一覧描画
-  render() {
-    var users = this.props.users;
-    // console.debug("==render in User==");
-    console.log(this.props);
-    console.log(users)
-    return (
-      <div>
-        <div id="user_form">
-          <button type="button" id="new_user" type="button" className="btn btn-primary" onClick={(e) => this.newUser(e)}>新規登録</button>
-        </div>
-        <div id="list_area">
-      </div>
-      </div>
-    );
-  }
 }
-
-//　ユーザフォーム
-class UserForm extends React.Component {
-  constructor(props, _railsContext) {
-    super(props)
-  }
-  render() {
-    // var users = this.props.users;
-    console.log("==UserForm==")
-    console.log(this.props)
-    return (
-      <div className="panel panel-success">
-        <form id="user_info" name="user_info" method="post">
-          <div className="panel-heading bg-success">昆活メイト登録</div>
-          <div className="panel-body">
-            <div id="user_info_message"></div>
-            <div className="container-fluid">
-              <div className="form-group row">
-                <label for="nickname">ニックネーム</label><input className="form-control" type="text" id="nickname" placeholder="半角英数字 例: Bob" name="nickname" />
-              </div>
-              <div className="form-group row">
-                <label for="password">パスワード</label><input className="form-control"  type="password" id="password" placeholder="半角英数字記号" name="password" />
-              </div>
-              <div className="form-group row">
-                <label for="password_confirm">パスワード(確認)</label><input className="form-control"  type="password" id="password_confirm" placeholder="パスワードと同じ内容" name="password_confirm" />
-              </div>
-            </div>
-          </div>
-          <div className="panel-footer">
-            <button type="button" id="commit_user" type="button" className="btn btn-success" onClick={(e) => this.props.user_context.createNewUser(e)}>この内容で登録</button>
-            <button type="button" id="cancel" type="button" className="btn btn-danger" onClick={(e) => this.props.user_context.newUser(e)}>取消(未実装)</button>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
-//　ユーザフォーム
+//　ユーザ更新フォーム
 class UserUpdateForm extends React.Component {
   constructor(props, _railsContext) {
     super(props)
@@ -208,16 +209,16 @@ class UserUpdateForm extends React.Component {
             <div id="user_update_message"></div>
             <div className="container-fluid">
               <div className="form-group row">
-                <label>ID: {user.id} </label>/>
+                <label>ID: <span id="update_id">{user.id}</span> </label>
               </div>
               <div className="form-group row">
-                <label for="nickname">ニックネーム</label><input className="form-control" type="text" id="update_nickname" placeholder="半角英数字 例: Bob" name="nickname"  />
+                <label for="nickname">ニックネーム</label><input className="form-control" type="text" id="update_nickname" placeholder="半角英数字 例: Bob" name="update_nickname"  value={user.nickname} />
               </div>
               <div className="form-group row">
-                <label for="password">パスワード</label><input className="form-control"  type="password" id="update_password" placeholder="半角英数字記号" name="password" />
+                <label for="password">パスワード</label><input className="form-control"  type="password" id="update_password" placeholder="半角英数字記号" name="update_password" />
               </div>
               <div className="form-group row">
-                <label for="password_confirm">パスワード(確認)</label><input className="form-control"  type="password" id="update_password_confirm" placeholder="パスワードと同じ内容" name="password_confirm" />
+                <label for="password_confirm">パスワード(確認)</label><input className="form-control"  type="password" id="update_password_confirm" placeholder="パスワードと同じ内容" name="update_password_confirm" />
               </div>
             </div>
           </div>
@@ -233,6 +234,7 @@ class UserUpdateForm extends React.Component {
   // ユーザ更新
   updateUser(target) {
     this.setState({ process: "users_update"});
+    console.debug("==users_update==");
     console.log(target);
     fetch('/api/v1/user/update', {
       method: 'POST',
@@ -242,11 +244,12 @@ class UserUpdateForm extends React.Component {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
       },
-      // body: JSON.stringify({
-      //   nickname: document.getElementById("nickname").value,
-      //   password: document.getElementById("password").value,
-      //   password_confirm: document.getElementById("password_confirm").value,
-      // })
+      body: JSON.stringify({
+        nickname: document.getElementById("update_nickname").value,
+        password: document.getElementById("update_password").value,
+        password_confirm: document.getElementById("update_password_confirm").value,
+        id:  document.getElementById("update_id").innerHTML
+      })
     }).then(function(response) {
         var ret = response.json()
         console.debug(ret)
@@ -261,17 +264,16 @@ class UserUpdateForm extends React.Component {
         );
         ReactDOM.render(
           elem,
-          document.getElementById('user_info_message')
+          document.getElementById('user_update_message')
         );
       }
       var elem = (
-          <div className="alert alert-info">更新しました。更新結果はタブ切り替えでご確認ください。</div>
+          <div className="alert alert-info">更新しました。更新結果はメニュー切り替えでご確認ください。</div>
       );
       ReactDOM.render(
         elem,
-        document.getElementById('user_info_message')
+        document.getElementById('user_update_message')
       );
-      this.findUserList()
     }).catch(function(error) {
       console.log(error)
       return error

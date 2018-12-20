@@ -9,14 +9,14 @@ user_1 = User.create nickname: "daddy", email: "daddy@nono.example", birthday:"1
 user_2 = User.create nickname:"mom", email:"mom@nono.example", birthday:"1984/02/02", password:"password2", password_confirmation:"password2", status:10
 sensor_1 = Sensor.create(
   user_id: user_1.id,
-  name: "センサー1",
+  name: "DHT22",
   status: 10,
   explanation: "-20 - 80度まで計測可能。",
-  type_cd: 5
+  type_cd: 1
 )
 th_1 = TempHumidity.create(
   sensor_id: sensor_1.id,
   temp: 15.2,
   humidity: 67.8,
-  inspected_at: '2012/01/11',
+  inspected_at: '2018/12/11 13:45:45',
 )

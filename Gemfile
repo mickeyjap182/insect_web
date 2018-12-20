@@ -41,6 +41,7 @@ gem "webpacker", "~> 3"
 gem 'rails-ujs', '~> 5.1.0.beta1'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
+gem 'rack-cors', require: 'rack/cors'
 # gem 'safe_attributes'
 
 group :development, :test do

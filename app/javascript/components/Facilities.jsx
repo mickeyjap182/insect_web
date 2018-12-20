@@ -33,7 +33,7 @@ export default class Facilities extends React.Component {
           {
             records.map((record) => {
               return <tr  key={record.id}>
-                <td> {record.id}</td><td>{record.type_cd}</td><td>{record.name}</td>
+                <td> {record.id}</td><td>{record.name}</td><td>{record.explanation}</td>
               </tr>
             })
           }

@@ -75,11 +75,12 @@ export default class Menu extends React.Component {
     return (
       <div className="nav">
         <ul className="list-group">
+          <li className="list-group-item list-group-item-info">メニュー</li>
           <li className="list-group-item list-group-item-action view overlay ">
             <ChangeLink cls="nav-link bg-primary text-white clickable" link="#temphumdity" onClick={(e) => this.showTempHumidity(e)}  value="温湿度状況"/>
           </li>
           <li className="list-group-item list-group-item-action bg-info">
-            <ChangeLink cls="nav-link bg-primary text-white clickable" link="#facilities" onClick={(e) => this.showFacility(e)}  value="設備一覧" />
+            <ChangeLink cls="nav-link bg-primary text-white clickable" link="#facilities" onClick={(e) => this.showFacility(e)}  value="設備確認" />
           </li>
           <li className="list-group-item list-group-item-action">
             <ChangeLink cls="nav-link bg-primary text-white clickable" link="#users"  onClick={(e) => this.showUser(e)} value="昆活メイト" />

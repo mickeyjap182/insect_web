@@ -1,12 +1,17 @@
         <div class="panel panel-info">
           <div id="panel_heading" class="panel-heading panel-info">ログイン</div>
-          <form id="user_info" name="user_info" method="post" action="/user/new">
+          <form id="user_info" name="user_info" method="post" action="/authenticate">
+            <%= hidden_field_tag "authenticity_token"  %>
             <div id="panel_body" class="panel-body">
                 <div class="panel-body">
-                  <div id="user_info_message"></div>
+                  <% flash.each do |key, value| %>
+                    <div class="alert alert-<%= key %>">
+                      <%= value %>
+                    </div>
+                  <% end %>
                   <div class="container-fluid">
                     <div class="form-group row">
-                      <label for="nickname">ニックネーム</label><input class="form-control" type="text" id="nickname" placeholder="例) Bob" name="nickname" />
+                      <label for="nickname">ニックネーム</label><input class="form-control" type="text" id="nickname" placeholder="例) Bob" name="nickname" value="<%= @nickname %>"  />
                     </div>
                     <div class="form-group row">
                       <label for="password">パスワード</label><input class="form-control"  type="password" id="password" placeholder="" name="password" />
@@ -15,7 +20,7 @@
                 </div>
             </div>
             <div class="panel-footer">
-              <button type="button" id="login" type="button" class="btn btn-success" >ログイン</button>
+              <button type="submit" id="login" type="button" class="btn btn-info" >ログイン</button>
             </div>
           </form>
         </div>

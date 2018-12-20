@@ -5,7 +5,7 @@ module Api
       skip_before_action :verify_authenticity_token
 
       def index
-        users = User.order(id: :asc).limit(20).offset(0).select("id", "nickname", "email")
+        users = User.order(id: :desc).limit(20).offset(0).select("id", "nickname", "email")
         render json: { status: :SUCCESS, message: 'index', users: users}, status: 200
       end
 
@@ -19,6 +19,7 @@ module Api
         req = post_params
         puts req
         begin
+          # TODO: requestのバリデータ、例外ブロックを基底 or  or concernsへ
           raise("入力値に誤りがあります。") if !(req.key?("nickname") && req.key?("password") && req.key?("password_confirm"))
           raise("パスワードは両方同じ内容を指定してください。") if (req["password"] != req["password_confirm"])
           raise("既に登録済みです。")  if User.exists?(nickname: req["nickname"])
@@ -33,7 +34,7 @@ module Api
           user.save!()
           render json: { status: :SUCCESS, message: '登録が完了しました。'}, status: 200
         rescue => exception
-          # ログ出力へ移動
+          # TODO:ログ出力へ移動
           logger.debug exception.message
           logger.debug exception.backtrace
           render json: { status: :FAILURE, message: exception.message}, status: 400
@@ -46,7 +47,30 @@ module Api
       end
 
       def update
-        render json: { status: 'SUCCESS', message: 'update'}, status: :ok
+        req = post_params
+        logger.debug req
+        begin
+          # TODO: requestのバリデータ、例外ブロックを基底 or concernsへ
+          raise("入力値に誤りがあります。") if !(req.key?("nickname") && req.key?("password") && req.key?("password_confirm"))
+          raise("パスワードは両方同じ内容を指定してください。") if (req["password"] != req["password_confirm"])
+          if User.where('id != ?',req["id"]).exists?(nickname: req["nickname"])
+            raise("存在するニックネームへは変更できません。")
+          end
+          users = User.where('id=?', req["id"])
+          raise("ご指定のユーザは存在しません。")  if !(users.exists?)
+          logger.debug("=====update!=====")
+          users[0].nickname = req["nickname"]
+          users[0].password = req["password"]
+          users[0].password_confirmation = req["password_confirm"]
+          raise("入力が有効ではありません。")  if !(users[0].valid?)
+          users[0].save!()
+          render json: { status: :SUCCESS, message: '更新が完了しました。'}, status: 200
+        rescue => exception
+          # beログ出力へ移動
+          logger.debug exception.message
+          logger.debug exception.backtrace
+          render json: { status: :FAILURE, message: exception.message}, status: 400
+        end
       end
 
       def login
@@ -63,8 +87,7 @@ module Api
       private
 
       def post_params
-        # params.require(:post).permit(:nickname, :password, :password_confirm)
-        JSON.parse(request.body.read)
+        return JSON.parse(request.body.read)
       end
     end
   end

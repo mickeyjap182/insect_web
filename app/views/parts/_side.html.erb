@@ -1,3 +1,9 @@
+<form id="user_info" name="user_info" method="post" action="/logout">
+  <%= hidden_field_tag "authenticity_token"  %>
+  <div class="panel-body">
+    <button type="submit" id="login" type="button" class="btn btn-info" >ログアウト</button>
+  </div>
+</form>
 <%= react_component('Menu', props: {users:@users, facilities:@facilities, tempHumidityList:@tempHumidities}, csrf_token: form_authenticity_token) %>
 
 <hr class="d-sm-none">
