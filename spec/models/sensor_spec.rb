@@ -4,10 +4,10 @@ require 'providers/data'
   # describe "Sensorモデル" do
 RSpec.describe Sensor, :type => :model do
   describe "モデル" do
-    user = Providers::Data.new_user()
+    # user = Providers::Data.new_user()
     context "パラメータ不足の場合" do
       let(:sensor) { Sensor.new(
-        user_id: user.id,
+        user_id: 1,
         explanation: "-20 - 80度まで計測可能。",
       )}
       it '入力値検証に失敗する' do
@@ -16,7 +16,7 @@ RSpec.describe Sensor, :type => :model do
     end
     context "パラメータ条件を満たしている場合" do
       let!(:sensor) { Sensor.create(
-        user_id: user.id,
+        user_id: 2,
         name: "センサー1",
         explanation: "-20 - 80度まで計測可能。",
       )}

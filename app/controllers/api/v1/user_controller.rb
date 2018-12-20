@@ -14,11 +14,8 @@ module Api
       end
 
       def create
-        puts "==create=="
-        puts params
-        req = post_params
-        puts req
         begin
+          req = post_params
           # TODO: requestのバリデータ、例外ブロックを基底 or  or concernsへ
           raise("入力値に誤りがあります。") if !(req.key?("nickname") && req.key?("password") && req.key?("password_confirm"))
           raise("パスワードは両方同じ内容を指定してください。") if (req["password"] != req["password_confirm"])
@@ -71,14 +68,6 @@ module Api
           logger.debug exception.backtrace
           render json: { status: :FAILURE, message: exception.message}, status: 400
         end
-      end
-
-      def login
-        puts '==request body=='
-        req = post_params
-        puts req
-        # puts JSON.parse(request.body.read)
-        render json: { status: 'SUCCESS', message: 'login', token: 'tokenstring'}, status: :ok
       end
 
       def logout

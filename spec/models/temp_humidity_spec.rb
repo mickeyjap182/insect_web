@@ -3,18 +3,14 @@ require 'providers/data'
 
 RSpec.describe TempHumidity, :type => :model do
   describe "モデル" do
-    user   = Providers::Data.new_user()
-    sensor = Providers::Data.new_sensor(user)
+    # TODO: モデル内部エラーの解決
+    # user   = Providers::Data.new_user()
+    # sensor = Providers::Data.new_sensor(user)
     context "パラメータ不足の場合" do
       let(:th) { TempHumidity.new(
-        # sensor_id: sensor,
-        # temp: 15.2,
         humidity: 67.8,
-        # inspected_at: '2012/01/11',
       )}
       it '入力値検証に失敗する' do
-        puts sensor.id
-
         expect(th.valid?).to eq false
       end
     end

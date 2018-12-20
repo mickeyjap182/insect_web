@@ -11,10 +11,9 @@ module Api
 
       def create
         begin
-          logger.debug params
           req = post_params
           # TODO: requestのバリデータ、例外ブロックを基底 or  or concernsへ
-          [ :sensor_id, :temp, :humidity, :inspected_at ].each do |param|
+          [ "sensor_id", "temp", "humidity", "inspected_at" ].each do |param|
             logger.debug param
             raise("パラメータに不足があります。") if !req.key?(param)
           end
